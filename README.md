@@ -29,11 +29,21 @@ La app permite:
 ```bash
 git clone https://github.com/mtsantiago1230/angular-contact-app.git
 cd angular-contact-app
+```
+
+### 2. Iniciar el repositorio
+
+**Desarrollo:**
+
+```bash
 npm install
 npm start
 ```
 
+**Producción:**
+
 ```bash
+npm install
 npm run build
 ```
 
