@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "Juan Pérez",
+    "email": "juan@example.com",
+    "phones": ["3111111111"]
+  },
+  {
+    "id": 2,
+    "name": "María Gómez",
+    "email": "maria@example.com",
+    "phones": ["3222222222", "3001112233"]
+  }
+]

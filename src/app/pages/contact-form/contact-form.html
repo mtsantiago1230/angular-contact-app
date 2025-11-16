@@ -1,0 +1,76 @@
+<div class="container">
+  <h2>{{ editMode ? 'Editar Contacto' : 'Nuevo Contacto' }}</h2>
+
+  <!-- conectamos el formulario con el formgroup -->
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <!-- Campo para el nombre del contacto -->
+    <label>Nombre</label>
+    <input formControlName="name" placeholder="Nombre del contacto" />
+    <div class="error" *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+      <span *ngIf="form.get('name')?.hasError('required')">Nombre es requerido.</span>
+    </div>
+
+    <!-- Campo para el email del contacto -->
+    <label>Email</label>
+    <input formControlName="email" placeholder="Email del contacto" />
+    <div class="error" *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
+      <span *ngIf="form.get('email')?.hasError('required')">Email es requerido.</span>
+      <span *ngIf="form.get('email')?.hasError('pattern')">Formato de email inválido.</span>
+    </div>
+
+    <!-- Campo para los teléfonos -->
+    <label>Teléfonos</label>
+    <div formArrayName="phones">
+      <div *ngFor="let phone of phones.controls; let i = index" class="phone-group">
+        <div class="phone-row">
+          <input [formControlName]="i" placeholder="Número de teléfono" />
+
+          <!-- solo se muestra el botón si hay más de un teléfono -->
+          <button
+            type="button"
+            class="remove-btn"
+            *ngIf="phones.length > 1"
+            (click)="removePhone(i)"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div
+          class="error"
+          *ngIf="phones.controls[i].touched && phones.controls[i].hasError('required')"
+        >
+          Teléfono es requerido.
+        </div>
+
+        <div
+          class="error"
+          *ngIf="phones.controls[i].touched && phones.controls[i].hasError('pattern')"
+        >
+          Número de teléfono inválido.
+        </div>
+
+        <div
+          class="error"
+          *ngIf="phones.controls[i].touched && phones.controls[i].hasError('minDigits')"
+        >
+          El teléfono debe contener al menos 7 dígitos.
+        </div>
+      </div>
+
+      <!-- si alguno de todos los teléfonos estan vacios -->
+      <div class="error" *ngIf="phones.touched && phones.hasError('emptyPhone')">
+        Al menos un teléfono debe estar completo.
+      </div>
+    </div>
+
+    <button type="button" class="secondary add-phone-btn" (click)="addPhone()">
+      + Agregar teléfono
+    </button>
+
+    <div class="actions">
+      <button class="primary" type="submit" [disabled]="form.invalid">Guardar</button>
+      <button class="soft" type="button" (click)="cancel()">Cancelar</button>
+    </div>
+  </form>
+</div>
