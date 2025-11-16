@@ -3,7 +3,11 @@ import { ContactForm } from './pages/contact-form/contact-form';
 import { ContactList } from './pages/contact-list/contact-list';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'contacts', pathMatch: 'full' },
+  {
+    path: '',
+    redirectTo: 'contacts',
+    pathMatch: 'full',
+  },
   {
     path: 'contacts',
     component: ContactList,
@@ -18,6 +22,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'contacts',
+    pathMatch: 'full',
   },
 ];
