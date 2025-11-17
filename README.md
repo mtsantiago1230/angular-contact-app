@@ -14,7 +14,7 @@ La app permite:
 
 ## 🛠️ Tecnologías
 
-- Angular 17
+- Angular
 - TypeScript
 - Reactive Forms
 - LocalStorage
